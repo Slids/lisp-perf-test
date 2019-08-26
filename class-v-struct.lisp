@@ -36,18 +36,17 @@
      (loop for i from 1 to run-times do
        (set-random-struct my-struct-instance)))))
 
-(defun run-instantiate-test (run-times)
-  (with-open-stream (*standard-output* (make-broadcast-stream))
-    (time
-     (loop for i from 1 to run-times do
-       (print (make-instance 'simple-class :slot-1 (random 10)
-					   :slot-2 (random 10)
-					   :slot-3 (random 10)))))
-    (time
-     (loop for i from 1 to run-times do
-       (print (make-simple-struct :slot-1 (random 10)
-				  :slot-2 (random 10)
-				  :slot-3 (random 10)))))))
+(defun run-instantiate-test (run-times)                                                                                                                                                                            
+  (time                                                                                                                                                                                                            
+   (loop for i from 1 to run-times do                                                                                                                                                                              
+     (make-instance 'simple-class :slot-1 (random 10)                                                                                                                                                              
+                                  :slot-2 (random 10)                                                                                                                                                              
+                                  :slot-3 (random 10))))                                                                                                                                                           
+  (time                                                                                                                                                                                                            
+   (loop for i from 1 to run-times do                                                                                                                                                                              
+     (make-simple-struct :slot-1 (random 10)                                                                                                                                                                       
+                         :slot-2 (random 10)                                                                                                                                                                       
+                         :slot-3 (random 10)))))                                                                                                                                                                   
 
 (defun run-instantiate-and-set-test (make-times set-times)
   ;; (with-open-stream (*standard-output* (make-broadcast-stream))
